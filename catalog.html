@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Учебный магазин - каталог</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
@@ -24,80 +25,174 @@
         <section class="main-catalog-section" id="catalog">
             <h2>Каталог</h2>
 
+
+            <input type="search" class="catalog-search"
+            id="search-input"
+            placeholder="Поиск товаров..."
+            aria-label="Поиск товаров"
+            >
+
+            <select class="catalog-search" name="" id="category-filter">
+                <option value="all">Все категории</option>
+                <option value="audio">Аудио</option>
+                <option value="consoles">Приставки и аксессуары</option>
+                <option value="clothes">Обувь</option>
+                <option value="parfum">Парфюмерия</option>
+            </select>
+
+                <select class="catalog-search" id="sort-select">
+                    <option value="default">По умолчанию</option>
+                    <option value="price-asc">Цена: по возрастанию</option>
+                    <option value="price-desc">Цена: по убыванию</option>
+                </select>
+
             <div class="catalog-product-cards">
 
-                <div class="product-cards">
-                    <img src="images/Airpods Max (product poster design).jpg" alt="">
-                    <h3>Наушники</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-                
-                <div class="product-cards">
-                    <img src="images/Playstation 5 by Sony Poster Design.jpg" alt="">
-                    <h3>Игровая приставка</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-
-                <div class="product-cards">
-                    <img src="images/Беспроводной контроллер DualSence Playstation 5.jpg" alt="">
-                    <h3>Контроллер</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-
-                <div class="product-cards">
-                    <img src="images/Graphic Design Portfolio_ Footwear Typography Poster for US Brands.jpg" alt="">
-                    <h3>Кроссовки</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-
-                <div class="product-cards">
-                    <img src="images/ДухиГолубые.jpg" alt="">
-                    <h3>Духи</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-
-                <div class="product-cards">
-                    <img src="images/ДухиНаВоде.jpg" alt="">
-                    <h3>Духи</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-
-                <div class="product-cards">
-                    <img src="images/БлюДеШанел.jpg" alt="">
-                    <h3>Духи</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-
-                <div class="product-cards">
-                    <img src="images/Без названия.jpg" alt="">
-                    <h3>Кроссовки</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
             </div>
 
         </section>
 
 
+        <div>
+            <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
+                <h2 id="order-dialog-title">Оформление заявки</h2>
+
+                    <form class="order-form" id="order-form" action="#" method="post" novalidate>
+
+                        <p id="form-message" role="status" aria-live="polite"></p>
+
+                        <input id="selected-product" name="selected-product" type="hidden">
+
+                        <div class="form-field">
+                            <label for="order-name">Имя</label>
+                            <input
+                                id="order-name"
+                                name="name"
+                                type="text"
+                                placeholder="Введите ваше имя"
+                                minlength="2"
+                                autocomplete="given-name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                        <label for="order-email">E-mail</label>
+                        <input
+                            id="order-email"
+                            name="email"
+                            type="email"
+                            placeholder="example@mail.ru"
+                            autocomplete="email"
+                            required
+                        >
+                        </div>
+
+                        <div class="form-field">
+                        <label for="order-phone">Телефон</label>
+                        <input
+                            id="order-phone"
+                            name="phone"
+                            type="tel"
+                            inputmode="tel"
+                            placeholder="+7 (900) 000-00-00"
+                            pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
+                            required
+                        >
+                        </div>
+
+                        <div class="form-field">
+                        <label for="order-date">Дата связи</label>
+                        <input
+                            id="order-date"
+                            name="date"
+                            type="date"
+                        >
+                        </div>
+
+                        <div class="form-field">
+                        <label for="order-comment">Комментарий</label>
+                        <textarea
+                            id="order-comment"
+                            name="comment"
+                            rows="4"
+                            placeholder="Укажите дополнительную информацию"
+                        ></textarea>
+                        </div>
+
+                        <label for="order-file">Прикрепить файл</label>
+                        <input
+                            id="order-file"
+                            name="file"
+                            type="file"
+                        >
+
+                        <div class="form-field form-field--checkbox">
+                        <label>
+                            <input
+                            id="order-agreement"
+                            name="agreement"
+                            type="checkbox"
+                            required
+                            >
+                            Я согласен на обработку данных
+                        </label>
+                        </div>
+
+                        <div class="form-actions">
+                        <button type="button" id="close-order-dialog">Закрыть</button>
+                        <button type="submit">Отправить заявку</button>
+                        </div>
+                    </form>
+                </dialog>
+        </div>
+
+
+        <dialog class="product-dialog" id="product-dialog">
+
+            <button
+                type="button"
+                class="product-dialog__close"
+                aria-label="Закрыть окно"
+            >
+                &times;
+            </button>
+
+            <img src="" class="detail-image" alt="">
+
+            <h2 class="detail-name"></h2>
+
+            <div class="product-rating">
+                <span class="detail-stars"></span>
+                <span class="detail-rating"></span>
+            </div>
+
+            <p class="detail-description"></p>
+
+            <p class="detail-stock"></p>
+
+            <h3 class="detail-price"></h3>
+
+            <button
+                type="button"
+                class="button detail-order-button"
+            >
+                Заказать
+            </button>
+
+        </dialog>
+
     <footer id="contacts">
         <p>© 2026 Shop SPA</p>
         <p>+0 (000) 000-00-00</p>
     </footer>
-  <script src="js/main.js"></script>
+
+    <script src="js/data.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/productDetails.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

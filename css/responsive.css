@@ -574,3 +574,14 @@
     animation-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 600px) {
+    .catalog-controls {
+        flex-direction: column;
+    }
+
+    .catalog-controls input,
+    .catalog-controls select {
+        width: 100%;
+    }
+}

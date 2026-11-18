@@ -38,72 +38,34 @@
         <section class="main-catalog-section" id="catalog">
             <h2>Каталог</h2>
 
-            <div class="catalog-product-cards">
+            <input type="search" class="catalog-search"
+            id="search-input"
+            placeholder="Поиск товаров..."
+            aria-label="Поиск товаров"
+            >
 
-                <div class="product-cards">
-                    <img src="images/Airpods Max (product poster design).jpg" alt="">
-                    <h3>Наушники</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-                
-                <div class="product-cards">
-                    <img src="images/Playstation 5 by Sony Poster Design.jpg" alt="">
-                    <h3>Игровая приставка</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
+            <select name="" class="catalog-search" id="category-filter">
+                <option value="all">Все категории</option>
+                <option value="audio">Аудио</option>
+                <option value="consoles">Приставки и аксессуары</option>
+                <option value="clothes">Обувь</option>
+                <option value="parfum">Парфюмерия</option>
+            </select>
 
-                <div class="product-cards">
-                    <img src="images/Беспроводной контроллер DualSence Playstation 5.jpg" alt="">
-                    <h3>Контроллер</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
+                <select class="catalog-search" id="sort-select">
+                    <option value="default">По умолчанию</option>
+                    <option value="price-asc">Цена: по возрастанию</option>
+                    <option value="price-desc">Цена: по убыванию</option>
+                </select>
 
-                <div class="product-cards">
-                    <img src="images/Graphic Design Portfolio_ Footwear Typography Poster for US Brands.jpg" alt="">
-                    <h3>Кроссовки</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
 
-                <div class="product-cards">
-                    <img src="images/ДухиГолубые.jpg" alt="">
-                    <h3>Духи</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
+            <div class="catalog-product-cards" id="product-list">
 
-                <div class="product-cards">
-                    <img src="images/ДухиНаВоде.jpg" alt="">
-                    <h3>Духи</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-
-                <div class="product-cards">
-                    <img src="images/БлюДеШанел.jpg" alt="">
-                    <h3>Духи</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
-
-                <div class="product-cards">
-                    <img src="images/Без названия.jpg" alt="">
-                    <h3>Кроссовки</h3>
-                    <p>Описание</p>
-                    <p>Цена</p>
-                    <button class="button product-card__button" type="button">Заказать</button>
-                </div>
             </div>
+
+            <p class="catalog-empty" hidden>
+                Товары не найдены
+            </p>
 
         </section>
 
@@ -166,7 +128,10 @@
             <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
                 <h2 id="order-dialog-title">Оформление заявки</h2>
 
-                    <form class="order-form" id="order-form" action="#" method="post" novalidate>
+                    <form class="order-form" action="#" method="post" novalidate>
+
+                        <p class="form-message" role="status"></p>
+
                         <input id="selected-product" name="selected-product" type="hidden">
 
                         <div class="form-field">
@@ -246,12 +211,45 @@
                         </div>
 
                         <div class="form-actions">
-                        <button type="button" id="close-order-dialog">Закрыть</button>
+                        <button type="button" class="close-order-dialog">Закрыть</button>
                         <button type="submit">Отправить заявку</button>
                         </div>
                     </form>
                 </dialog>
         </div>
+
+        <dialog class="product-dialog" id="product-dialog">
+
+            <button type="button"
+                class="product-dialog__close"
+                id="close-product-dialog"
+                >
+                &times;
+            </button>
+
+            <img src="" class="detail-image" alt="">
+
+            <h2 class="detail-name"></h2>
+
+            <div class="product-rating">
+                <span class="detail-stars"></span>
+                <span class="detail-rating"></span>
+            </div>
+
+            <p class="detail-description"></p>
+
+            <p class="detail-stock"></p>
+
+            <h3 class="detail-price"></h3>
+
+            <button
+            type="button"
+            class="button detail-order-button"
+            id="detail-order-button">
+                Заказать
+            </button>
+
+        </dialog>
 
 
         <section class="about-us" id="about">
@@ -283,6 +281,14 @@
         <p>© 2026 Shop SPA</p>
         <p>+0 (000) 000-00-00</p>
     </footer>
+
+
+    <script src="js/data.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/productDetails.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
