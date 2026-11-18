@@ -1,5 +1,4 @@
 function initProductDetails() {
-
     let container = document.querySelector('.catalog-product-cards');
 
     let dialog = document.querySelector('.product-dialog');
@@ -15,12 +14,26 @@ function initProductDetails() {
     let detailOrderButton = document.querySelector('.detail-order-button');
 
 
+
     let favorites = new Set();
 
+    products.forEach(function(product) {
+        if (localStorage.getItem('favorite-' + product.id) === 'true') {
+            favorites.add(product.id);
+        }
+
+    });
     function updateHeart(button, id) {
         let isFavorite = favorites.has(id);
         button.innerHTML = isFavorite ? `<i class="fa-solid fa-heart"></i>` : `<i class="fa-regular fa-heart"></i>`;
         button.classList.toggle('active', isFavorite);
+
+        if (isFavorite) {
+            localStorage.setItem('favorite-' + id, 'true');
+        } else {
+            localStorage.removeItem('favorite-' + id, 'false');
+        }
+        
     }
     container.querySelectorAll('.product-cards').forEach(function(card) {
         let id = Number(card.dataset.id);
@@ -32,7 +45,6 @@ function initProductDetails() {
 
 
     let currentProduct = null;
-
     function openProduct(id) {
         let product = products.find(function(item) {
             return item.id === id;
@@ -89,8 +101,6 @@ function initProductDetails() {
 
     detailOrderButton.addEventListener('click', function() {
         let orderDialog = document.querySelector('#order-dialog');
-        let selectedProduct = document.querySelector('#selected-product');
-
         let message = document.querySelector('.form-message');
 
         if (message) {

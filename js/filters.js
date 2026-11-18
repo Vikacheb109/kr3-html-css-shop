@@ -9,7 +9,6 @@ function sortCards() {
         let productA = products.find(function(item) {
             return item.id === Number(cardA.dataset.id);
         });
-
         let productB = products.find(function(item) {
             return item.id === Number(cardB.dataset.id);
         });
@@ -17,7 +16,6 @@ function sortCards() {
         if (sortType === 'price-asc') {
             return productA.price - productB.price;
         }
-
         if (sortType === 'price-desc') {
             return productB.price - productA.price;
         }

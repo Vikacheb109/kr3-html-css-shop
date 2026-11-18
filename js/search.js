@@ -1,5 +1,4 @@
 function filterCards() {
-
     let searchText = document.querySelector('#search-input').value.toLowerCase().trim();
     let category = document.querySelector('#category-filter').value;
 
@@ -10,7 +9,6 @@ function filterCards() {
 
     cards.forEach(function(card) {
         let id = Number(card.dataset.id);
-
         let product = products.find(function(item) {
             return item.id === id;
         });
